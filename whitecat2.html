@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+      <link href='http://fonts.googleapis.com/css?family=Indie+Flower|Signika' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css'rel='stylesheet' type='text/css'>
+  <title>White cat</title>
+  <style>
+  #frame{
+    width: 520px;
+    height:500px;
+    position:absolute;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+  }
+    img{
+      width:150px;
+      height:auto;
+    }
+    
+    *{
+      font-family: 'Nanum Gothic Coding';
+      font-family: 'Signika', sans-serif;
+      margin: 0;
+      padding:0;
+    }
+   li{
+     list-style:none;
+     float:left;
+     width:33.3%;
+     text-align:center;
+   }
+    #title{
+      font-size:40px;
+    }
+    #under-frame{
+      position:relative;
+      height:372px;
+      display:none;
+    }
+      #title{
+        position:absolute;
+        z-index:20;
+        top:50%;
+        left:50%;
+        margin-top:-25px;
+        margin-left:-82px;
+        border-bottom:1px solid black;
+      }
+    #cat{
+      position:absolute;
+      top:50%;
+      left:50%;
+      margin-left:-62px;
+      margin-top:-83px;
+    }
+    #navi{
+      display:none;
+    } 
+    #navi li{
+      display:none;
+    }
+    #foot{
+      text-align:center;
+      display:none;
+    }
+  </style>
+  
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js">
+  </script>
+</head>
+<body>
+  <div id="frame">
+    <div id="navi">
+      <ul>
+        <li>About</li> <li>Collection</li><li>Contact</li>
+      </ul>
+    </div>
+   <div id="under-frame">
+      <div id="title">White cat</div>
+      <div id="cat">
+      <img src="http://kimyeri.com/images/whitecat.png" alt="main image">
+    </div>
+  </div>
+    <div id="foot">White cat tarot card online service</div>
+  </div>
+  <script>
+      setTimeout(function(){
+        $('#under-frame').fadeIn('slow') 
+       },1000)
+      setTimeout(function(){
+        $('#navi').fadeIn('slow');
+        $('#navi li').eq(0).fadeIn('slow') 
+       },2000)
+        setTimeout(function(){
+        $('#navi li').eq(1).fadeIn('slow') 
+       },3000)
+        setTimeout(function(){
+        $('#navi li').eq(2).fadeIn('slow') 
+       },4000)
+        setTimeout(function(){
+        $('#foot').fadeIn('slow') 
+       },5000)    
+  </script>
+  
+</body>
+</html>
