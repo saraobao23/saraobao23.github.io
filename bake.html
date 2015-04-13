@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>과자 굽기 (return 문)</title>
+</head>
+<body>
+</body>
+<script>
+    /*bake라는 이름을 가진 함수를 만든다. 값을 받아서(용어로는 파라미터 라고 부른다.)
+      degrees라는 이름으로 바꿔준다.
+      예를 들면 bake(300); 을 해주면 저 degrees는 300이 된다.
+      또 예를 들면 bake("안녕")을 해주면 degrees는 "안녕"이 된다.
+     */
+    function bake(degrees) {
+        /*message라는 변수를 만들어준다
+          변수는 어떤값을 담을 수 있는 작은 공간이다.
+          예를들어 var test; 해주면 test라는 작은 공간(변수)가 만들어 지는 것이다.
+          var 이라는애가 변수를 만들어주는 아이다.
+         */
+        var message;
+
+        /*
+            위에서 받은 degrees를 가지고 값을 비교해준다.
+            만약 bake(300)를 해주면 degrees는 300이 된다 그래서 저 if()안에서 500이랑 비교된다.
+            if문은 괄호 안에있는 값을 비교한다.
+            처음에 있는 if에 들어가서 비교한후 거짓이면 else if를 찾고 else if가 없으면 else를 찾는다.
+            else도 없으면 if문은 끝난다.
+            만약 있다면 else if나 else를 실행한다.
+            else if로 비교하다가 진실인 값이 없으면 최종적으로 else로 들어간다.
+         */
+        if (degrees > 500) {
+            message = "저는 원자로가 아닙니다!";
+        } else if (degrees < 100) {
+            message = "저는 냉장고가 아닙니다!";
+        } else {
+            /*
+            만약 degrees가 500보다 작고 100보다 크면(딱 맞는 온도이면) 이곳으로 오게 된다.
+             message에 "저에게 딱 맞는 온도네요."라는 문자열을 넣어준다.
+             */
+            message = "저에게 딱 맞는 온도네요.";
+            /*
+                setMode라는 함수에 "굽기"라는 문자열을 넣어준다
+                setMode는 값을 받아서(용어로는 파라미터 라고 부른다)mode에 넣어준다
+                한마디로 "굽기"라는 문자열이 setMode에 있는 mode에 들어가게 된다.
+                그후 mode를 alert으로 띄워주는데 이때 mode에는 "굽기"라는 문자열이 들어가 있으므로
+                "굽기"가 alert으로 띄워지게 된다.
+             */
+            setMode("굽기");
+            /*
+                setTemp라는 함수에 degrees를 넣어주는데 이때 degrees는 500보다 작고 100보다 큰 값일것이다.
+                그후 setTemp는 는 값을 받아서(용어로는 파라미터 라고 부른다)degrees에 넣어준다
+                그후 alert으로 받은 값을 띄워준다.
+             */
+            setTemp(degrees);
+        }
+        /*
+            모든 과정이 끝난후 bake라는 함수는 message를 반환해준다.
+            그래서 var test = bake(300);
+            이라는 코드가 끝난후 test라는 변수에는 "저에게 딱맞는 온도네요" 라는 문자열이 담기게된다.
+         */
+        return message;
+    }//degrees의 끝
+
+    function setMode(mode) {alert(mode)};
+    function setTemp(degrees) {alert(degrees) };
+    /*
+        기본적으로 실행되는 함수이다.
+        값을 받아서 bake에 넘겨준후 넘겨준값이 500보다 작고 100보다 큰 값이 아니면 다시 실행해준다.
+     */
+    function re(){
+        var temp = prompt("degree?");
+        var status = bake(temp);
+        alert(status)
+
+        if(temp > 500 || temp < 100){
+            re()
+        }
+    }
+
+    // 처음으로 re를 실행해주는 구문이다.
+    re()
+</script>
+</body>
+</html>
