@@ -1,53 +1,81 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<title>White cat</title>
+<title>White cat</title>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js">
+  </script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var random = getParameter("number");
+      var clickcheck = 0;
+      $("textarea").click(function(){
+      if(clickcheck==0){
+      	$("textarea").html(random)
+      	clickcheck=1
+      }
+      });	
+  });
+</script>
   <style>
-      @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
+    @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
   body{
-  	margin: 0 auto;
-  	 font-family: 'Nanum Gothic', sans-serif;
+    margin: 0 auto;
+    width:600px;
+    font-family: 'Nanum Gothic', sans-serif;
   }
-  p{
-  	text-align: center;
-  	font-size: 13px;
-  	line-height: 22px;
+    .ss-q-title{
+      font-weight:bold;
+      margin:12px 0;
+      clear:both;
+    }
+    li{
+      float:left;
+      margin-right:20px;
+    }
+    li:first-child{
+      margin-left:-43px;
+      margin-bottom:15px;
+    }
+    #ss-submit{
+      margin-bottom:20px;
+      position:absolute;
+      bottom:-55px;
+      right:100px;
+    }
+   form{
+      margin-bottom:60px;
+      margin-left:100px;
+      position:relative;
+    }
+    textarea{
+      width:400px;
+    }
 
-  }
   #frame{
   	width:600px;
   	margin: 0 auto;
-  	margin-top:-75px;
-  	clear: both;
+  	margin-top:-100px;
   }
-	
+  img{
+		width: 150px;
+		height: 280px;
+	}
 	#cover{
-		width:120px;
+		margin: 0 auto;
+		width:150px;
+		height: auto;
 		display: block;
-		margin-top: 60px;
-		float: left;
-		margin-right: 8px;
-		margin-left: 38px;
-		cursor:pointer;
+		margin-top: 100px;
 	}
 
 	#five{
 		margin-top:60px;
-		padding-top: 60px;
-		overflow: hidden;
-		width: 433px;
-		height: 299px;
-
 	}
 	#five img{
-		width: 120px;
-		height:215px;
-		padding: 0 5px;
+		width: 100px;
+		height: 186px;
 	}
 
   .next{
@@ -74,52 +102,9 @@
    {
    opacity:0.7;
    }  
-   button{
-
-   }
    
-#chart2 { 
-	transform-origin: 116px 902px;
-}
-#chart2-text2{
-	transform-origin: 116px 902px;
-}
 
-[id$="chart2"], [id$="chart2-text2"] { 
-	transform: scale(0.5, 0.5);
-}
 
-#chart2:hover, #chart2:hover ~ #chart2-text2{
-	transform: scale(1.5,1.5);
-	transition: transform 0.5s ease;
-}
-
-#chart3 { 
-	transform-origin: 586px 902px;
-}
-#chart3-text2{
-	transform-origin: 586px 902px;
-}
-
-[id$="chart3"], [id$="chart3-text2"] { 
-	transform: scale(0.5, 0.5);
-}
-
-#chart3:hover, #chart3:hover ~ #chart3-text2{
-	transform: scale(1.5,1.5);
-	transition: transform 0.5s ease;
-}
-#colorbar{
-	transform-origin: 66px 1500px;
-	transform: scale(0.05,1);
-}
-#colorbar2{
-	transform-origin: 66px 1500px;
-	transform: scale(0.8,1);
-}
-#colorlab:hover *{
-	transform: scale(1,1);
-	transition: transform 0.5s ease;
 }
 #colorlab:hover #colorbar{
 fill: #C584B7;
@@ -139,12 +124,7 @@ fill: #9C65EA;
 	transform: scale(1,1);
 	transition: transform 0.5s ease;
 }
-#colorlab2:hover #colorbar3{
-fill: #C584B7;
-}
-#colorlab2:hover #colorbar4{
-fill: #9C65EA;
-}
+
 
 .opacity{
   width:81px;
@@ -159,14 +139,7 @@ fill: #9C65EA;
 .opacity_in_{
  position:relative;
 }
-.right{
-  position:absolute;
-  top:100px;
-  right:115px;
-  text-decoration:none;
-  color:black;
-  font-size:13px;
-}
+
 .left{
   position:absolute;
   top:100px;
@@ -178,40 +151,24 @@ fill: #9C65EA;
 a:hover{
   text-decoration:underline;
 }
-.rotate3D{
-    -webkit-transform: rotateY(360deg); 
-    transform: rotateY(360deg);
-    transition-duration:1s;
-}
-.cardwraper{
-float: left;
-word-spacing: 10px;
+
+#Thankyou{
+font-size: 50px;
+font-weight: bold;
 text-align: center;
-margin-bottom: 20px;
 }
-.cardwraper img{
-display: block;
+p{
+   font-size: 12px;
+   line-height: 20px;
 }
-
-#order{
-	font-size: 14px;
-	margin-top: -50px;
+.text1{
+	margin-left: 181px;
+	margin-top: 50px;
 }
-#order a{
-	text-decoration: none;
-  	color: black;
-}
-#order a:hover{
-	text-decoration: underline;
-}
-#text{
-	font-size: 12px;
-	text-align: center;
+.text2{
+	margin-left: 172px;
 	margin-top: 30px;
-
-}
-.sample_button{
-	margin-left: 20px;
+	
 }
   </style>
   
@@ -220,10 +177,9 @@ display: block;
   <link rel="stylesheet" href="http://daneden.github.io/animate.css/animate.min.css" />
 </head>
 <body>
+
   <div class="opacity">
-    <div class="opacitiy_in_ flash animated"><a class="left" href="final_whitecat_infor.html">About</a></div>
-    <div class="opacitiy_in_ flash animated"><a class="right" href="final_whitecat_request.html">Request</a></div>
-    
+    <div class="opacitiy_in_ flash animated"><a class="left" href="final_whitecat_card.html">Tarot</a></div>    
   </div>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="600px"
 	 height="261.804px" viewBox="0 0 600 261.804" enable-background="new 0 0 600 261.804" xml:space="preserve">
@@ -810,108 +766,23 @@ display: block;
 	</g>
 </g>
 </svg>
-<body>
-	<p>궁금한 점을 생각하며 카드를 클릭하세요.
+<p id="Thankyou">Thank you.</p>
+<p class="text1"><b> 입금계좌</b> [신한] 김예리 110 404 671303<br/>
+<b> 문의</b> [KakaoTalk] yeri0309<br/>
+<b>금액</b> 1,000원.<br/></p>
+<p class="text2">
+-  타로 결과의 불만족에 따른 환불은 불가합니다. <br/>
+-  24시간 내에 결과를 전하는 것을 원칙으로 합니다. <br/>
+- 되도록 빨리 전달할 수 있도록 노력하겠습니다. :)
 </p>
-
-<div id="frame">
-
-<img id="cover"class="flash animated" src="images/cover.jpg" alt="cover">
-<div id="five">
-<img src="images/cover.jpg" alt="cover">
-<img src="images/cover.jpg" alt="cover">
-<img src="images/cover.jpg" alt="cover">
-</div>
-
-
-
-
-</div>
-<p id="order"><a href="#"><input type="button" value="주문하기"/> </a>
-
-<a><input type="button" class="sample_button"value="샘플 보기 "/></a>
-</p>
-
-<p id="text"> 타로카드 복채는 천 원입니다. <br/>
-      해석을 E-mail로 보내드리고 있어요. :) <br/>
-</p>
-<script type="text/javascript">
-
-$(".sample_button").click(function(){
-	window.open("final_whitecat_popup.html", "sample", "width=610px, height=842px");
-});
-
-var turn_check='안 돌고있다';
-
-$("#cover").click(function(){
-	if(turn_check=='안 돌고있다'){
-
-		turn_check='돈다';
-		$("#cover").addClass("rotate3D");
-	var array =[];
-		var number ="";
- 	$("#five").html("");
-	for(var i = 0; i < 3 ; i++){
-		var random;
-		var check = true;
-
-		while(check){
-			random = Math.floor(Math.random()  *22);
-			check = array.indexOf(random);
-			if(check == -1){
-				check = false;
-			}else{
-				check = true;
-			}
-		}
-
-		array.push(random);
-		if(i == 0){
-			number = number + random;
-		}else{
-			number = number + "," + random;
-		}	
-
-		$("#five").append("<div class='cardwraper'><img src='images/Whitecat_" + random + ".jpg' /></div>");
-	}
-
-		setTimeout(function(){
-			$("#cover").removeClass("rotate3D");
-			turn_check='안 돌고있다';
-		},1000);
- 	}
- 	$("#order a").attr("href","final_whitecat_request.html?number=" + number);
-});
-
-
-
-function random_check(random, array){
-	for (var i = 0; i < array.length; i++) { 
-   		if(array[1] == random){
-   			return false;
-   		}
-	}
-		return true;
-}
-
-</script>
- <script>
-  
-$(document).ready(function(){
-$("#chart1-text2").hide(); 
-$("#chart1").hover(function(){ $("#chart1-text2").show()},
-                   function(){ $("#chart1-text2").hide()})
-})                              
-</script>
 <script>
- (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-62521932-1', 'auto');
   ga('send', 'pageview');
-
 </script>
-</body>
+  </body>
 </html>

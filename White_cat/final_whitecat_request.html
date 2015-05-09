@@ -4,6 +4,20 @@
 <html>
 <head>
 <title>White cat</title>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js">
+  </script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var random = getParameter("number");
+      var clickcheck = 0;
+      $("textarea").click(function(){
+      if(clickcheck==0){
+      	$("textarea").html(random)
+      	clickcheck=1
+      }
+      });	
+  });
+</script>
   <style>
     @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
   body{
@@ -798,7 +812,7 @@ display: block;
 <script type="text/javascript">var submitted=false;</script>
 <iframe name="hidden_iframe" id="hidden_iframe"
 style="display:none;" onload="if(submitted)
-{window.location='http://saraobao23.github.io/whitecat2.html';}"></iframe>
+{window.location='http://saraobao23.github.io/White_cat/final_whitecat_main';}"></iframe>
 <form action="https://docs.google.com/forms/d/1gN4D6XTjK13p9LMc1KSqs6mJFPohnuhAQ-sG-G8sNzg/formResponse" method="post"
 target="hidden_iframe" onsubmit="submitted=true;"><ol role="list" class="ss-question-list" style="padding-left: 0">
 <div class="ss-form-question errorbox-good" role="listitem">
@@ -839,7 +853,19 @@ target="hidden_iframe" onsubmit="submitted=true;"><ol role="list" class="ss-ques
 <label class="ss-q-item-label" for="entry_414344955"><div class="ss-q-title">어떤 생각을 하며 타로 카드를 뽑았는지 적어주세요. 
 </div>
 <div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
-<textarea name="entry.414344955" rows="8" cols="0" class="ss-q-long" id="entry_414344955" dir="auto" aria-label="어떤 생각을 하며 타로 카드를 뽑았는지 적어주세요   "></textarea>
+<textarea name="entry.414344955" 
+
+placeholder="클릭했을때 나오는 3개의 숫자와
+입금하실 이름을 함께 보내주세요.
+어떤 생각을 하셨는지 구체적일수록 좋습니다.
+
+[예시]
+5, 3, 6 
+홍길동
+올해 취업할 수 있을까요?"
+
+
+rows="8" cols="0" class="ss-q-long" id="entry_414344955" dir="auto" aria-label="어떤 생각을 하며 타로 카드를 뽑았는지 적어주세요   "></textarea>
 <div class="error-message" id="1719100778_errorMessage"></div>
 
 </div></div></div>
@@ -851,7 +877,7 @@ target="hidden_iframe" onsubmit="submitted=true;"><ol role="list" class="ss-ques
 <input type="hidden" name="fbzx" value="-8858427599471728848">
 
 <div class="ss-item ss-navigate"><table id="navigation-table"><tbody><tr><td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
-<input type="submit" name="submit" value="&#48372;&#45236;&#44592;" id="ss-submit" class="jfk-button jfk-button-action ">
+<input type="submit" name="submit" value="보내기" id="ss-submit" class="jfk-button jfk-button-action ">
 </td>
 </tr></tbody></table></div></ol></form>
 <script>
@@ -862,6 +888,20 @@ target="hidden_iframe" onsubmit="submitted=true;"><ol role="list" class="ss-ques
 
   ga('create', 'UA-62521932-1', 'auto');
   ga('send', 'pageview');
+
+ function getParameter(name) {
+          var rtnval = '';
+          var nowAddress = unescape(location.href);
+          var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1, nowAddress.length)).split('&');
+          for (var i = 0; i < parameters.length; i++) {
+              var varName = parameters[i].split('=')[0];
+              if (varName.toUpperCase() == name.toUpperCase()) {
+                  rtnval = parameters[i].split('=')[1];
+                  break;
+              }
+          }
+          return rtnval;
+      }
 
 </script>
   </body>
