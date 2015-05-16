@@ -103,10 +103,117 @@
    <div id="under-frame">
       <div id="title">White cat</div>
       <div id="cat">
-      <img src="http://kimyeri.com/images/whitecat.png" alt="main image">
+      <canvas id="myCanvas" width="150" height="167"></canvas>
     </div>
   </div>
     <div id="foot">계원예술대학교 교과 과정 이수중에 제작한 온라인 타로 서비스 홈페이지입니다.<br/> 본 홈페이지는 흥미 위주로 이용을 부탁드리며, 익명성을 보장합니다. </div>
+  </div>
+  <div>
+
+
+
+
+
+
+
+<script>
+function cat_left(cat){
+  var left = cat.css("left");
+  left = left.replace("px","");
+  cat.css("left", left -  3);
+}
+
+function cat_right(cat){
+  var right = cat.css("left");
+  right = right.replace("px","") * 1;
+  console.log(right);
+  cat.css("left", right + 3);
+}
+
+function cat_top(cat){
+
+}
+
+function cat_bottom(cat){
+
+}
+
+$(window).on("keydown", function(evt){
+  var cat = $("#cat");
+
+  switch (evt.keyCode) {
+
+          // Left arrow.
+        case 37:
+          cat_left(cat);
+        
+          break;
+
+          // Right arrow.
+        case 39:
+            cat_right(cat);
+          
+          break;
+
+          // Down arrow
+        case 40:
+          shipY = shipY + 30;
+          if (shipY > 270) {
+            // If at edge, reset ship position and set flag.
+            shipY = 270;
+            flag = 1;
+          }
+          break;
+
+          // Up arrow 
+        case 38:
+          shipY = shipY - 30;
+          if (shipY < 0) {
+            // If at edge, reset ship position and set flag.
+            shipY = 0;
+            flag = 1;
+          }
+          break;
+
+        }
+} )
+
+$(document).ready(function(){
+
+   $('html').on("mousedown", function(e){
+    var cat = $("#cat");
+    var left  = cat.css("left");
+    left = left.replace("px","") * 1;
+
+ var x = e.clientX;
+ var y = e.clientY;
+    //  console.log(e);
+    //  console.log(x,y);
+  //We will add another clause to prevent reverse gear
+
+  if(x < left ){
+    cat_left(cat);
+  }else if(x > left){
+    cat_right(cat)
+  }
+  //The snake is now onclick controllable
+ })
+
+myCanvas();
+});
+function myCanvas() {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = new Image();
+    img.onload = function(){
+      ctx.drawImage(img,1,1,150,167);
+    }
+          img.src = 'http://kimyeri.com/images/whitecat.png';
+
+    }
+  
+   
+</script>
   </div>
   <script>
       setTimeout(function(){
