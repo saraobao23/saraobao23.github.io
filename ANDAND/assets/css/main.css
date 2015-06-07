@@ -19,6 +19,10 @@
 		vertical-align: baseline;
 	}
 
+	h5{
+		margin-bottom: 20px;
+	}
+
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
