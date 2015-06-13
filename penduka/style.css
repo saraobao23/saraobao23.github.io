@@ -1,6 +1,41 @@
  @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 @media all and (max-width: 768px) {
+#and{
+  top:30px;
+}
+  #cot{
+  top:60px;
+  width: 60%;
+  left:50px;
+}
+#far{
+  width: 44%;
+  right:70px;
+  top: 20px;
+}
+#studio{
+  width: 44%;
+  right:90px;
+  top: 10px;
+}
+#near{
+  width:70%;
+  left: 35px;
+  top: 20px;
+
+}
+#very{
+  width: 50%;
+  right:90px;
+  top:30px;
+
+}
+#vlab{
+  width: 70%;
+  left:40px;
+ top: 40px;
+}
     .content-box{
    width:100%;
   }
@@ -31,6 +66,29 @@
   
 }
 @media all and (min-width: 1025px) {
+  #cot{
+  top:50px;
+}
+#far{
+  width: 38%;
+  right:70px;
+  top: 10px;
+}
+#studio{
+  width: 34%;
+  right:90px;
+  top: 10px;
+}
+#very{
+  width: 40%;
+  right:90px;
+
+}
+#vlab{
+  width: 50%;
+  right:90px;
+ top: 40px;
+}
   .content-box{
     width:31.6%;
   }
@@ -140,17 +198,4 @@ white-space: normal;
   clear:both;
   overflow:hidden;
   margin-right:18px;
-}
-#cot{
-  top:50px;
-}
-#far{
-  width: 38%;
-  right:70px;
-  top: 10px;
-}
-#studio{
-  width: 34%;
-  right:90px;
-  top: 10px;
 }
