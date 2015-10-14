@@ -1,0 +1,20 @@
+<html><head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/
+jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+var accessToken = "a3ef36af06a9a0c7a3d017ac74c2e9e3073f2b45";
+var deviceID = "340043001047343339383037";
+var url = "https://api.spark.io/v1/devices/" + deviceID
++ "/led";
+function switchOn(){
+$.post(url, {params: "on", access_token: accessToken });
+}
+function switchOff(){
+$.post(url, {params: "off", access_token: accessToken });
+}
+</script></head>
+<body>
+<h1>On/Off Control</h1>
+<input type="button" onClick="switchOn()" value="ON"/>
+<input type="button" onClick="switchOff()" value="OFF"/>
+</body></html>
