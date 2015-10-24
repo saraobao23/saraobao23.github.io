@@ -1,0 +1,45 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="raphael.2.1.0.min.js"></script>
+<script src="justgage.1.0.1.min.js"></script>
+
+<script>
+var accessToken = "53e0f16bc8c588a857d762f30b876a701557fd36";
+var deviceID = "2c0022000b47343138333038"
+var url = "https://api.spark.io/v1/devices/" + deviceID + "/gasRead";
+
+function callback(data, status){
+	if (status == "success") {
+		temp = parseFloat(data.result);
+		temp = temp.toFixed(2);
+		g.refresh(temp);
+		setTimeout(getReading, 1000);
+	}
+	else {
+		alert("There was a problem");
+	}
+}
+
+function getReading(){
+   	$.get(url, {access_token: accessToken}, callback);
+}
+</script>
+</head>	
+
+<body>
+<div id="gauge" class="200x160px"></div>
+
+<script>
+var g = new JustGage({
+    id: "gauge",
+    value: 0,
+    min: 0,
+    max: 5000,
+    title: "Degrees F"
+});
+getReading();
+</script>
+
+</body>
+</html>
