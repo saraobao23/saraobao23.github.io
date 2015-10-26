@@ -1,0 +1,1 @@
+$(".content-box").on("click", function(e){window.location.href = $(this).data("link")})
