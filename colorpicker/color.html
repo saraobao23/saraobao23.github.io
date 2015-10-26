@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="css/colorpicker.css" type="text/css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />
+    <title>ColorPicker - jQuery plugin</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/colorpicker.js"></script>
+    
+</head>
+<body>
+    <div id="color_picker"></div>
+    <script type="text/javascript">
+
+var timer = null;
+
+$('#color_picker').ColorPicker({
+    color: '#0000ff', flat: true, 
+    onShow: function (colpkr) {
+        $(colpkr).fadeIn(500);
+        return false;
+    },
+    onHide: function (colpkr) {
+        $(colpkr).fadeOut(500);
+        return false;
+    },
+    onChange: function (hsb, hex, rgb) {
+        clearTimeout(timer);
+        timer = setTimeout(function () { call_rgb(rgb) }, 100); 
+    }
+});
+    var device_id ="310020001347343339383037",
+        access_token="6a15a998533c8e2a7232860eec4c0b97e33dcafe",
+        call_url ="https://api.spark.io/v1/devices/" + device_id;
+
+function zerofill (number, length) {
+    return new Array((length - String(number).length) + 1).join("0") + number;
+}
+
+//call
+var $ajaxTimer;
+function call_rgb(rgb){
+    var type="/rgb";
+    $ajaxTimer && $ajaxTimer.abort();
+    $ajaxTimer = $.ajax({
+        "url":call_url + type,
+        "type":"post",
+        "data":{
+            "access_token":access_token,
+            "params": zerofill(rgb.r, 3)+zerofill(rgb.g, 3)+zerofill(rgb.b, 3)
+        },
+        "success": function(data){
+            console.dir(data);
+        }
+    });
+}
+//rgb 오브젝트 받아서 스트링으로 바꾸주는 함수 
+function to_rgb(rgb){
+    var seper =",";
+    return rgb.r +seper+ rgb.g +seper+rgb.b 
+}
+    </script>
+
+</body>
+</html>
+	               
