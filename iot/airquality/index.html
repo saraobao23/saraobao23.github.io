@@ -1,0 +1,55 @@
+<html>
+<head>
+    <link rel="shortcut icon" href="images/pabi.ico" >
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta charset="utf-8">
+    <title>Air Quailty</title>
+    <link href='./assets/css/main.css'rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css'rel='stylesheet' type='text/css'>
+    <!--Load the AJAX API. Do this only once per web page! -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="./assets/js/google_api.js"></script>
+    <script type="text/javascript" src="./assets/js/getData.js"></script>
+</head>
+<body>
+<div id="wrap">
+	<div class="header">
+		<img src="images/air_logo.png">
+	</div>
+        <div class="caption"><div>Kaywon IoT Project _ OZz</div></div>
+	<div class="graph-field">
+		<div id="chart_div">	
+		</div>
+	</div>
+
+	<div class="data-field">
+        <div class="data-value">
+            <p>TODAY</p>
+            <ul>
+                <li>MOMENT
+                    <span class="air-value current_val"></span>
+                </li>
+                <li>HEIGHEST
+                    <span class="air-value max_value"></span>
+                </li>
+                <li>LOWEST
+                    <span class="air-value min_value"></span>
+                </li>
+            </ul>
+        </div>
+	</div>
+ </div>
+
+<!--Div that will hold the pie chart-->
+
+	
+
+<script>
+    yeri.googleChart.init(undefined, document.getElementById("chart_div"));
+    yeri.dataReceiver.setPolling();
+    yeri.dataReceiver.getMaxMinData();
+</script>
+</body>
+</html>
