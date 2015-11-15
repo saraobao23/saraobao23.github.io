@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="shortcut icon" href="images/pabi.ico" >
-    <meta name="viewport" content="initial-scale=0.5, width=device-width">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta charset="utf-8">
     <title>Air Quailty</title>
     <link href='./assets/css/main.css'rel='stylesheet' type='text/css'>
@@ -137,8 +137,15 @@
 
 <script>
     $(document).ready(function(){
+        set_resize();
+        
         $(window).resize(function(){
-            var window_width = $(this).width();
+            set_resize();
+        });
+    });
+
+    function set_resize(){
+          var window_width = screen.width;
 
             if(window_width > 415){
                 $("*").css("zoom", 1);
@@ -153,8 +160,7 @@
                 $(".data-field *").css("zoom", "0.80");
                 $("p").css("margin-top", "9px");
             }
-        });
-    });
+    }
 
     google.load('visualization', '1', {'packages':['corechart']});
 
