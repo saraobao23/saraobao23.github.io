@@ -136,6 +136,26 @@
 
 
 <script>
+    $(document).ready(function(){
+        $(window).resize(function(){
+            var window_width = $(this).width();
+
+            if(window_width > 415){
+                $("*").css("zoom", 1);
+                $(".data-field *").css("zoom", "1");
+                $("p").css("margin-top", "0");
+            } else if(394 < window_width < 414 ){
+                $("*").css("zoom", 0.96);
+                $(".data-field *").css("zoom", "1");
+                $("p").css("margin-top", "0");
+            } else {
+                $("*").css("zoom", 0.8);
+                $(".data-field *").css("zoom", "0.80");
+                $("p").css("margin-top", "9px");
+            }
+        });
+    });
+
     google.load('visualization', '1', {'packages':['corechart']});
 
     var chart_1 = yeri.googleChart(undefined, document.getElementById("chart_div1"));
