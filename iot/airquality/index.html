@@ -12,44 +12,159 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="./assets/js/google_api.js"></script>
     <script type="text/javascript" src="./assets/js/getData.js"></script>
+    <script type="text/javascript" src="./assets/js/moment.js"></script>
+    <script type="text/javascript" src="./assets/js/moment.ko.js"></script>
 </head>
 <body>
 <div id="wrap">
-	<div class="header">
-		<img src="images/air_logo.png">
-	</div>
-        <div class="caption"><div>Kaywon IoT Project _ OZz</div></div>
-	<div class="graph-field">
-		<div id="chart_div">	
-		</div>
-	</div>
+    <!-- <div class="header">
+        <img src="images/air_logo.png">
+    </div> -->
+    <header>
+        <div class="logo_img"><img src="images/logo.png"></div>
+    </header>
 
-	<div class="data-field">
-        <div class="data-value">
-            <p>TODAY</p>
-            <ul>
-                <li>MOMENT
-                    <span class="air-value current_val"></span>
-                </li>
-                <li>HEIGHEST
-                    <span class="air-value max_value"></span>
-                </li>
-                <li>LOWEST
-                    <span class="air-value min_value"></span>
-                </li>
-            </ul>
+    <div class="group_1 data_group">
+        <div class="air_quality data_field">
+            <div class="caption"><div>Air Quality Data</div></div>
+            <div class="graph-field">
+                <div class="layer" id="chart_div1">
+                </div>
+            </div>
+
+            <div class="data-field">
+                <div class="data-value">
+                    <p>TODAY</p>
+                    <ul>
+                        <li>MOMENT
+                            <span class="air-value current_val"></span>
+                        </li>
+                        <li>HEIGHEST
+                            <span class="air-value max_value"></span>
+                        </li>
+                        <li>LOWEST
+                            <span class="air-value min_value"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-	</div>
- </div>
+
+        <div class="temp_field data_field">
+            <div class="caption">Temperature Data</div>
+            <div class="graph-field">
+                <div class="layer" id="chart_div2">
+                </div>
+            </div>
+
+            <div class="data-field">
+                <div class="data-value">
+                    <p>TODAY</p>
+                    <ul>
+                        <li>MOMENT
+                            <span class="air-value current_val"></span>
+                        </li>
+                        <li>HEIGHEST
+                            <span class="air-value max_value"></span>
+                        </li>
+                        <li>LOWEST
+                            <span class="air-value min_value"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="group_2 data_group">
+        <div class="humid_field data_field">
+            <div class="caption"><div>Humidity Data</div></div>
+            <div class="graph-field">
+                <div class="layer" id="chart_div3">
+                </div>
+            </div>
+
+            <div class="data-field">
+                <div class="data-value">
+                    <p>TODAY</p>
+                    <ul>
+                        <li>MOMENT
+                            <span class="air-value current_val"></span>
+                        </li>
+                        <li>HEIGHEST
+                            <span class="air-value max_value"></span>
+                        </li>
+                        <li>LOWEST
+                            <span class="air-value min_value"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="light_field data_field">
+            <div class="caption"><div>Illunination Data</div></div>
+            <div class="graph-field">
+                <div class="layer" id="chart_div4">
+                </div>
+            </div>
+
+            <div class="data-field">
+                <div class="data-value">
+                    <p>TODAY</p>
+                    <ul>
+                        <li>MOMENT
+                            <span class="air-value current_val"></span>
+                        </li>
+                        <li>HEIGHEST
+                            <span class="air-value max_value"></span>
+                        </li>
+                        <li>LOWEST
+                            <span class="air-value min_value"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <!--Div that will hold the pie chart-->
 
-	
+
 
 <script>
-    yeri.googleChart.init(undefined, document.getElementById("chart_div"));
-    yeri.dataReceiver.setPolling();
-    yeri.dataReceiver.getMaxMinData();
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    var chart_1 = yeri.googleChart(undefined, document.getElementById("chart_div1"));
+    yeri.dataReceiver(chart_1, {
+        "call_url": "http://api.thingspeak.com/channels/55251/feed.json",
+        "column_name": "오염도",
+        "field_name": "field2"
+    });
+
+    var chart_2 = yeri.googleChart(undefined, document.getElementById("chart_div2"));
+    yeri.dataReceiver(chart_2, {
+        "call_url": "http://api.thingspeak.com/channels/62133/feed.json",
+        "column_name": "온도",
+        "field_name": "field4"
+    });
+
+    var chart_3 = yeri.googleChart(undefined, document.getElementById("chart_div3"));
+    yeri.dataReceiver(chart_3, {
+        "call_url": "http://api.thingspeak.com/channels/62133/feed.json",
+        "column_name": "습도",
+        "field_name": "field3"
+    });
+
+    var chart_4 = yeri.googleChart(undefined, document.getElementById("chart_div4"));
+    yeri.dataReceiver(chart_4, {
+        "call_url": "http://api.thingspeak.com/channels/64652/feed.json",
+        "column_name": "밝기",
+        "field_name": "field1"
+    });
 </script>
 </body>
 </html>

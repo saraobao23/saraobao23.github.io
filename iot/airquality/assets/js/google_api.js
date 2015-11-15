@@ -1,24 +1,25 @@
 (function(){
-  var api = {};
-
-  api.init = function(callback, target){
-    this._setVariable(target);
+  var api = function(callback, target){
     this._load();
+    this._setVariable(target);
   };
 
-  api._setVariable = function(target){
+  function api_factory(callback, target){
+    return new api(callback, target);
+  }
+
+  api.prototype._setVariable = function(target){
     this.target = target;
 
     this.options = {
-      'width':"100%",
-      'height':400,
-      "colors": ['#FEDA24','#004411'],
-      "areaOpacity": ["0.6"],
-
+      'width':500,
+      'height':250,
+      "colors": ['#FEDA24', '#004411'],
+      "areaOpacity": ["0.6"]
     };
   };
 
-  api._setInitData = function(){
+  api.prototype._setInitData = function(){
     this.data = new google.visualization.arrayToDataTable([
       ['Year', 'sales'],
       ['',  1000],
@@ -28,41 +29,35 @@
     ]);
   };
 
-  api._load = function(){
-    google.load('visualization', '1', {'packages':['corechart']});
+  api.prototype._load = function(){
     //google.setOnLoadCallback(this._init.bind(this));
-  }
-
-  api._init = function(){
-    this._setInitData();
-    this.drawChart();
   };
 
-  api.drawChart = function () {
+  api.prototype.drawChart = function () {
     var  _drawChart = this.chart || new google.visualization.AreaChart(this.target);
-    _drawChart.draw(api.data, api.options);
+    _drawChart.draw(this.data, this.options);
   };
 
-  api.getOptions = function(){
+  api.prototype.getOptions = function(){
     return this.options;
   };
 
-  api.setOptions = function(options){
+  api.prototype.setOptions = function(options){
     $.extend(this.option || {}, options);
   };
 
-  api.getData = function(){
+  api.prototype.getData = function(){
     return this.data;
   };
 
-  api.setData = function(data){
+  api.prototype.setData = function(data){
     this.data = data;
   };
 
   if(window.yeri){
-    window.yeri.googleChart = api;
+    window.yeri.googleChart = api_factory;
   } else {
     window.yeri = {};
-    window.yeri.googleChart = api;
+    window.yeri.googleChart = api_factory;
   }
 })();

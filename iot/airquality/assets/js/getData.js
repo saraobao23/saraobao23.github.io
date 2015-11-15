@@ -1,12 +1,32 @@
 (function(){
-  var dataReceiver = {},
-      timeGetter = {},
-      $dom = {};
+  var dataReceiver = function(api_obj, option_obj){
+        this.api_obj = api_obj;
 
-  $dom.init = function(){
-    this.current_val = $(".current_val");
-    this.max_value = $(".max_value");
-    this.min_value = $(".min_value");
+        this._init(option_obj);
+      },
+      timeGetter = {};
+
+  function dataReceiverFactory(api_obj, option_obj){
+    var dataReceiverObj = new dataReceiver(api_obj, option_obj);
+
+    dataReceiverObj.setPolling();
+    dataReceiverObj.getMaxMinData();
+
+  }
+
+  dataReceiver.prototype._init = function(option_obj){
+    var target_id = "#" + this.api_obj.target.id;
+    var data_field = $(target_id).parent().next();
+
+    this.field_name = option_obj.field_name;
+    this.current_val_el = data_field.find(".current_val");
+    this.max_value_el = data_field.find(".max_value");
+    this.min_value_el = data_field.find(".min_value");
+
+    if(option_obj){
+      this.call_url = option_obj.call_url;
+      this.column_name = option_obj.column_name;
+    }
   };
 
   timeGetter.getTimeStamp = function(is_first){
@@ -37,44 +57,54 @@
     return zero + n;
   };
 
-  dataReceiver.getData = function(callback){
-    var call_url = "http://api.thingspeak.com/channels/55251/feed.json";
+  dataReceiver.prototype.getData = function(callback){
+    var self = this;
+
+    var call_url = this.call_url;
 
     $.ajax({
       "url": call_url ,
       "type": "get"
     }).then(function(data){
-      var list = dataReceiver.parseList(data);
-      var defaultTemplate = [['Year', '오염도']],
+      var list = self.parseList(data);
+      var defaultTemplate = [[
+            {label: 'temp', type: 'string'},
+            {label: self.column_name, type: 'number'},
+            {type: 'string', role: 'tooltip'}
+            ]
+          ],
           list_max = list.length;
 
       $.each(list, function(i, e){
-        if(e.field2){
-          defaultTemplate.push(["", parseInt(e.field2)]);
+        var list_property = e[self.field_name];
+
+        if(list_property){
+          list_property = parseInt(list_property);
+          defaultTemplate.push(["", list_property , self.column_name + " : " + list_property + "\n" + moment(e["created_at"]).format("a hh:mm:ss")]);
         }
 
-        if(i > list_max - 5 && e.field2){
-          $dom.current_val.html(e.field2);
+        if(i > list_max - 5 && list_property){
+          self.current_val_el.html(parseFloat(list_property).toFixed(0));
         }
       });
 
       var data = new google.visualization.arrayToDataTable(defaultTemplate);
 
-      yeri.googleChart.setData(data);
-      yeri.googleChart.drawChart();
+      self.api_obj.setData(data);
+      self.api_obj.drawChart();
     });
   };
 
-  dataReceiver.getMaxMinData = function(){
-    $dom.init();
-    dataReceiver.getMaxMinDataFunc();
-    setInterval(this.getMaxMinDataFunc, 10000);
+  dataReceiver.prototype.getMaxMinData  = function(){
+    setInterval(this.getMaxMinDataFunc.bind(this), 10000);
   };
 
-  dataReceiver.getMaxMinDataFunc = function(){
+  dataReceiver.prototype.getMaxMinDataFunc = function(){
+    var self = this;
+
     var start_temp = "{{start_time}}",
         end_temp = "{{end_time}}",
-        call_url = "https://thingspeak.com/channels/55251/feed.json?start=" + start_temp + "&end=" + end_temp;
+        call_url = this.call_url + "?start=" + start_temp + "&end=" + end_temp;
     call_url = call_url.replace(start_temp, timeGetter.getTimeStamp(true));
     call_url = call_url.replace(end_temp, timeGetter.getTimeStamp());
 
@@ -82,36 +112,37 @@
       "url": call_url,
       "type": "get"
     }).then(function(data){
-      var list = dataReceiver.parseList(data);
-      var field2_list = $.map(list, function(e, i){
-        if(e.field2){
-          return parseInt(e.field2);
+      var list = self.parseList(data);
+      var field_list = $.map(list, function(e, i){
+        if(e[self.field_name]){
+          return parseInt(e[self.field_name]);
         }
       });
 
-      $dom.max_value.html(Math.max.apply(null, field2_list));
-      $dom.min_value.html(Math.min.apply(null, field2_list));
+      self.max_value_el.html(Math.max.apply(null, field_list));
+      self.min_value_el.html(Math.min.apply(null, field_list));
     });
   };
 
-  dataReceiver.setPolling = function(callback){
-    setInterval(this.getData, 2000);
+  dataReceiver.prototype.setPolling = function(){
+    setInterval(this.getData.bind(this), 2000);
   };
 
-  dataReceiver.parseList = function (data){
-    var feeds = data.feeds;
+  dataReceiver.prototype.parseList = function (data){
+    var feeds = data.feeds,
+        self = this;
 
     var list = _.map(feeds, function(feed_d){
-      return _.pick(feed_d, "field1", "field2");
+      return _.pick(feed_d, self.field_name, "created_at");
     });
 
     return list;
   };
 
   if(window.yeri){
-    window.yeri.dataReceiver = dataReceiver;
+    window.yeri.dataReceiver = dataReceiverFactory;
   } else {
     window.yeri = {};
-    window.yeri.dataReceiver = dataReceiver;
+    window.yeri.dataReceiver = dataReceiverFactory;
   }
 })();

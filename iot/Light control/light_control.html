@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>Light Control</title>
+    <link href='./css/css.css'rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css'rel='stylesheet' type='text/css'>
+  <style>
+  
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="header">
+    <img src="images/logo.png" alt="logo"/>
+  </div>
+<div class="light_pic">
+<img class="light_off" src="images/light_0.png" alt="LED가 꺼진 상태입니다"/>
+</div>
+
+  
+  <div id="range">
+  <input class="bright" type="range" min="0" max="255" value="0" />
+  </div>
+
+</div>
+
+  <script type="text/javascript">
+    var device_id ="310020001347343339383037",
+        access_token="94975220bf288d85983691769d9967e0cd0c0ec1",
+        call_url ="https://api.spark.io/v1/devices/" + device_id;
+    
+  //감지 메서드, 
+  $("button").on("click", function(){
+    var status = $(this).data("status"),
+          light_img = $(".light_off"),
+        type = "/led";
+
+    if(status === "on"){
+light_img.attr("src", "images/light_100.png");
+    } else {
+light_img.attr("src",  "images/light_0.png");
+    }
+
+$.ajax({
+  "url":call_url + type,
+  "type":"post",
+  "data": {
+  "access_token":access_token,
+  //요청 
+  "params": status
+},
+  "success": function(data){
+   if(data.return_value == 1){
+     alert("켜졌다");
+     
+   } else {
+     alert("꺼졌다");
+   }
+}     
+})    
+  })
+  
+  $(".bright").on("input",function(){
+    var option = {
+      "0": "images/light_0.png",
+      "64" : "images/light_25.png",
+      "65" : "images/light_25.png",
+      "67" : "images/light_25.png",
+      "68" : "images/light_25.png",
+      "128" : "images/light_50.png",
+      "129" : "images/light_50.png",
+      "130" : "images/light_50.png",
+      "131" : "images/light_50.png",
+      "191": "images/light_75.png",
+      "192": "images/light_75.png",
+      "193": "images/light_75.png",
+      "194": "images/light_75.png",
+      "195": "images/light_75.png",
+      "196": "images/light_75.png",
+      "197": "images/light_75.png",
+      "198": "images/light_75.png",
+      "199": "images/light_75.png",
+      "255": "images/light_100.png"
+    },
+    value = $(this).val(),
+    light_el = $(".light_off"),
+    option_src = option[value];
+
+    console.log(value);
+    if(option[value]){
+      console.log(option_src + value);
+
+      light_el.attr("src", option_src);
+    }
+
+  })
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>On OFF BUTTON</title>
+    <link href='./css/css.css'rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css'rel='stylesheet' type='text/css'>
+  <style>
+  
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="header">
+    <img src="images/logo.png" alt="logo"/>
+  </div>
+<div class="light_pic">
+<img class="light_off" src="images/light_off.png" alt="LED가 꺼진 상태입니다"/>
+</div>
+<div class="button_group">
+  <button class="btn" data-status="on">ON</button>
+  <button class="btn" data-status="off">OFF</button>
+</div>
+  
+ 
+</div>
+
+  <script type="text/javascript">
+    var device_id ="35002e000747343232363230",
+        access_token="6a15a998533c8e2a7232860eec4c0b97e33dcafe",
+        call_url ="https://api.spark.io/v1/devices/" + device_id;
+    
+  //감지 메서드, 
+  $("button").on("click", function(){
+    var status = $(this).data("status"),
+          light_img = $(".light_off"),
+        type = "/led";
+
+    if(status === "on"){
+light_img.attr("src", "images/light_on.png");
+    } else {
+light_img.attr("src",  "images/light_off.png");
+    }
+
+$.ajax({
+  "url":call_url + type,
+  "type":"post",
+  "data": {
+  "access_token":access_token,
+  //요청 
+  "params": status
+},
+  "success": function(data){
+   if(data.return_value == 1){
+     alert("켜졌다");
+     
+   } else {
+     alert("꺼졌다");
+   }
+}     
+})    
+  })
+  
+  $(".bright").on("change",function(){
+    console.log("test");
+  })
+
+  </script>
+</body>
+</html>
