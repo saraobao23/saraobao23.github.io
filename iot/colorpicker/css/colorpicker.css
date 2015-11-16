@@ -182,3 +182,19 @@
 	background-position: bottom;
 }
 
+
+.copyright p{
+color:black;
+font-size: 13px;
+padding-right: 0;
+display:block;
+font-weight: 2px;
+}
+
+.copyright{
+    display: block;
+    margin: 0 auto;
+    width:265px;
+    padding-top: 50px;
+    padding-bottom: 15px;
+}

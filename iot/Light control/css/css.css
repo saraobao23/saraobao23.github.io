@@ -122,3 +122,19 @@ input[type=range]:focus::-ms-fill-upper {
 	margin: 0 auto;
 	margin-top:20px;
 }
+
+.copyright p{
+color:black;
+font-size: 13px;
+padding-right: 0;
+display:block;
+font-weight: 2px;
+}
+
+.copyright{
+    display: block;
+    margin: 0 auto;
+    width:260px;
+    padding-top: 60px;
+    padding-bottom: 15px;
+}

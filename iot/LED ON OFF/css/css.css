@@ -56,5 +56,22 @@ button .bin{
 	width:134px;
 	display:block;
 	margin: 0 auto;
-	margin-top:20px;
+	margin-top:40px;
+}
+
+.copyright p{
+color:black;
+font-size: 13px;
+padding-right: 0;
+display:block;
+font-weight: 2px;
+}
+
+.copyright{
+    display: block;
+    margin: 0 auto;
+    width:263px;
+    padding-top: 40px;
+    padding-bottom: 15px;
+
 }
