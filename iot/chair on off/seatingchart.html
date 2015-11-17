@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="images/pabi.ico" >
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Seating Chart</title>
+    <link href='./css/css.css'rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css'rel='stylesheet' type='text/css'>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="header">
+        <img src="images/logo.png" alt="logo"/>
+    </div>
+    <div class="light_pic">
+        <img class="light_off" src="images/chair-png.png" alt="자리가 비어있습니다."/>
+    </div>
+
+
+    <div class="copyright"><p>copyright(c)2015 All rights reserved by OZz</p></div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    var device_id ="310020001347343339383037",
+        access_token="94975220bf288d85983691769d9967e0cd0c0ec1",
+        call_url ="https://api.spark.io/v1/devices/" + device_id,
+        $light_img = $(".light_off");
+
+        setInterval(getNowStatus, 1000);
+
+    function getNowStatus(){
+        $.getJSON(call_url, function(data){
+            if(data){
+                $light_img.attr("src", "images/chair-png-y.png");
+            } else {
+                $light_img.attr("src",  "images/chair-png.png");
+            }
+        });
+    }
+</script>
+</body>
+</html>
