@@ -10,14 +10,19 @@
 	<script type="text/javascript" src="js/colorpicker.js"></script>
 </head>
 <body>
+       <div class="navi">
+<ul>
+<li> <a href="http://saraobao23.github.io/iot/airquality/index.html"> Dash Board</a> </li>
+</ul>
     <div id="wrap">
+      
     <header class="logo"><img src="images/rgb_logo.png"></header>
-       
+    <div class="content-field">
     <div id="color_picker"></div>
     <div class="copyright"><p>copyright(c)2015 All rights reserved by OZz</p></div>
 </div>
+</div>
     <script type="text/javascript">
-
 var timer = null;
 
 $('#color_picker').ColorPicker({
@@ -35,8 +40,8 @@ $('#color_picker').ColorPicker({
         timer = setTimeout(function () { call_rgb(rgb) }, 100); 
     }
 });
-    var device_id ="33003e001747343338333633",
-        access_token="6a15a998533c8e2a7232860eec4c0b97e33dcafe",
+    var device_id ="35002e000747343232363230",
+        access_token="94bfda3c9e82a06f2ae2597f3eb031510727a4db",
         call_url ="https://api.spark.io/v1/devices/" + device_id;
 
 function zerofill (number, length) {
